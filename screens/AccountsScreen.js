@@ -63,6 +63,10 @@ export default class AccountsScreen extends React.Component {
                 <View className="column">
                   <Text>{item.type}</Text>
                 </View>
+                <View className="actions">
+                  <Button onPress={()=>{}} title="Manage"/>
+                  <Button onPress={()=>{}} title="Edit"/>
+                </View>
               </View>
             )}
           />
