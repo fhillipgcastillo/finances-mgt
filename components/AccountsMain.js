@@ -21,7 +21,7 @@ class AccountsMain extends Component {
       <View>
         <View className="account-options-actions">
           <Button
-            onPress={() => {}}
+            onPress={()=>this.props.onManagementPressed(this.props.pages.Create)}
             title="New Acount"
             style={{ maxWidth: 100 }}
           />
@@ -30,6 +30,7 @@ class AccountsMain extends Component {
           <FlatList
             style={{ display: "flex" }}
             data={this.state.accounts}
+            // keyExtractor={({index, key})=> key}
             renderItem={({ item, index }) => (
               <View
                 className="file"
@@ -53,7 +54,7 @@ class AccountsMain extends Component {
                   <Text>{item.type}</Text>
                 </View>
                 <View className="actions">
-                  <Button onPress={() => {}} title="Manage" />
+                  <Button onPress={()=>this.props.onManagementPressed(this.props.pages.Management)} title="Manage" />
                   <Button onPress={() => {}} title="Edit" />
                 </View>
               </View>
