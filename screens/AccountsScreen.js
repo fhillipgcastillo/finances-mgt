@@ -8,6 +8,8 @@ import {
   FlatList,
   Button
 } from "react-native";
+import AccountsMain from "../components/AccountsMain";
+
 
 export default class AccountsScreen extends React.Component {
   state = {
@@ -34,43 +36,7 @@ export default class AccountsScreen extends React.Component {
   render() {
     return (
       <View>
-        <View className="account-options-actions">
-          <Button onPress={()=>{}} title="New Acount" style={{maxWidth:100}}/>
-        </View>
-        <ScrollView>
-          <FlatList
-            style={{ display: "flex" }}
-            data={this.state.accounts}
-            renderItem={({ item, index }) => (
-              <View
-                className="file"
-                key={index}
-                style={{
-                  flex: 1,
-                  flexDirection: "row",
-                  justifyContent: "space-evenly",
-                  padding: 5,
-                  backgroundColor: "white",
-                  borderBottomColor: "gray"
-                }}
-              >
-                <View className="column">
-                  <Text>{item.code}</Text>
-                </View>
-                <View className="column">
-                  <Text>{item.name}</Text>
-                </View>
-                <View className="column">
-                  <Text>{item.type}</Text>
-                </View>
-                <View className="actions">
-                  <Button onPress={()=>{}} title="Manage"/>
-                  <Button onPress={()=>{}} title="Edit"/>
-                </View>
-              </View>
-            )}
-          />
-        </ScrollView>
+        <AccountsMain accounts={this.state.accounts} />
       </View>
     );
   }
