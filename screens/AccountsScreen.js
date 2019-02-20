@@ -9,6 +9,8 @@ import {
   Button
 } from "react-native";
 import AccountsMain from "../components/AccountsMain";
+import  ManageAccount from "../components/ManageAccounts";
+
 
 const accountTypes = {
   Credit: "Credit",
@@ -30,7 +32,7 @@ export default class AccountsScreen extends React.Component {
       }
     ],
     pages: { Main: "main", Management: "management", Edit: "edit", Create:"create" },
-    page: "main"
+    page: accountTypes.Main
   };
   static navigationOptions = {
     title: "Accounts"
@@ -41,14 +43,18 @@ export default class AccountsScreen extends React.Component {
   render() {
     return (
       <View>
-        {this.state.page === this.state.pages.Main ? (
+        {this.state.page === this.state.pages.Main 
+        ? 
           <AccountsMain accounts={this.state.accounts} onManagementPressed={this.handleManagePressed} pages={this.state.pages}/>
-        ) : (
+        : this.state.page === this.state.pages.Create
+        ? 
+          <ManageAccount goBack={()=>this.handleManagePressed(this.state.pages.Main)}/>
+        :
           <View >
             <Text>Something</Text>
             <Button onPress={()=>this.handleManagePressed(this.state.pages.Main)} title="go back"/>
           </View>
-        )}
+        }
       </View>
     );
   }
