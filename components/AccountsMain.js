@@ -16,6 +16,10 @@ class AccountsMain extends Component {
   componentDidMount() {
     this.setState({ accounts: this.props.accounts || [] });
   }
+  handleGetAccountsByType = (code)=>{
+    var a = this.props.getAccountsByType(code);
+    console.log(a);
+  }
   render() {
     return (
       <View>

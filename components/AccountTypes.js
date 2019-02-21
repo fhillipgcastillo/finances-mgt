@@ -3,7 +3,7 @@ import {
   View, Text, Button
 } from 'react-native'
 
-class ManageAccountScreen extends Component {
+class AccountTypes extends Component {
   state = {  
     parent: {}
   }
@@ -23,4 +23,4 @@ class ManageAccountScreen extends Component {
   }
 }
  
-export default ManageAccountScreen;
+export default AccountTypes;

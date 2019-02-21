@@ -9,7 +9,7 @@ import {
   Button
 } from "react-native";
 import AccountsMain from "../components/AccountsMain";
-import  ManageAccount from "../components/ManageAccounts";
+import AccountTypes from "../components/AccountTypes";
 
 
 const accountTypes = {
@@ -26,29 +26,50 @@ export default class AccountsScreen extends React.Component {
         type: accountTypes.Debit
       },
       {
-        name: "Cuentas por Cobrar",
-        code: "CxC",
+        name: "Document por Pagar",
+        code: "DxP",
         type: accountTypes.Credit
       }
     ],
-    pages: { Main: "main", Management: "management", Edit: "edit", Create:"create" },
+    pages: { Main: "main", Management: "management", Edit: "edit", AccountType:"accountType" },
     page: accountTypes.Main
   };
-  static navigationOptions = {
+  navigationOptions = {
     title: "Accounts"
   };
   handleManagePressed = (page) => {
     this.setState({page: page});
+    this.navigationOptions = page
+  }
+  getAccountsByType =(code)=>{
+    switch(code){
+      case "CxP":
+        return [
+          {
+            name:"Tarjeta de Credito",
+            amount: 0.00,
+            dateToPay: ""
+          }
+        ];
+      case "DxP":
+        return [
+          {
+            name:"Prestamo del Popular",
+            amount: 2600,
+            dateToPay: ""
+          }
+        ]
+    }
   }
   render() {
     return (
       <View>
         {this.state.page === this.state.pages.Main 
         ? 
-          <AccountsMain accounts={this.state.accounts} onManagementPressed={this.handleManagePressed} pages={this.state.pages}/>
-        : this.state.page === this.state.pages.Create
+          <AccountsMain accounts={this.state.accounts} onManagementPressed={this.handleManagePressed} pages={this.state.pages} getAccountsByType={this.getAccountsByType} />
+        : this.state.page === this.state.pages.AccountType
         ? 
-          <ManageAccount goBack={()=>this.handleManagePressed(this.state.pages.Main)}/>
+          <AccountTypes goBack={()=>this.handleManagePressed(this.state.pages.Main)}/>
         :
           <View >
             <Text>Something</Text>
